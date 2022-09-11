@@ -101,59 +101,6 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
     </ul>
   </div>
 </section>
-<section class="account">
-  <div class="wrapper">
-    <h1 class="section-title wow fadeInUp">Cadastro</h1>
-    <p class="section-paragraph wow fadeInDown" data-wow-delay="0.15s">
-      Cadastre se e venha fazer parte desse incrível servidor!
-    </p>
-    <form style="width: fit-content; display: flex; flex-direction: column; margin: 0 auto; margin-top: 2rem">
-      <div style="display: flex; justify-content: space-between">
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" style="margin-left: 1rem" />
-      </div>
-      <br>
-      <div style="display: flex; justify-content: space-between">
-      <label for="email">E-mail:</label>
-      <input type="text" name="email" id="email" style="margin-left: 1rem"/>
-      </div>
-      <br>
-      <div style="display: flex; justify-content: space-between">
-      <label for="password">Senha:</label>
-      <input type="text" type="password" name="password" id="password" style="margin-left: 1rem"/>
-      </div>
-      <br>
-      <div style="display: flex; justify-content: space-between">
-      <label for="password">Repetir Senha:</label>
-      <input type="text" type="password" name="password" id="repeat-password" style="margin-left: 1rem"/>
-      </div>
-      <br>
-      <input type="button" value="Cadastrar se" />
-    </form>
-  </div>
-</section>
-<section class="downloads">
-  <div class="wrapper">
-    <h1 class="section-title wow fadeInUp">Downloads</h1>
-    <p class="section-paragraph wow fadeInDown" data-wow-delay="0.15s">
-      Faça download do nosso Patch para versão Interlude ou baixe o Cliente + Patch completo.
-    </p>
-    <table style="margin: 0 auto; margin-top: 25px;">
-      <tbody>
-        <tr>
-          <td>PATCH</td>
-          <td>MEGAUPLOAD</td>
-          <td>GOOGLE DRIVE</td>
-        </tr>
-        <tr>
-          <td>CLIENT FULL + PATCH</td>
-          <td>MEGAUPLOAD</td>
-          <td>GOOGLE DRIVE</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
 <div class="anchor" id="features"></div>
 <section id="slider-zones" class="zones">
   <div class="slider" rel="1">
@@ -249,6 +196,65 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
     </div>
   </div>
 </section>
+<section class="account">
+  <div class="wrapper">
+    <h1 class="section-title wow fadeInUp">Cadastro</h1>
+    <p class="section-paragraph wow fadeInDown" data-wow-delay="0.15s">
+      Cadastre se e venha fazer parte desse incrível servidor!
+    </p>
+    <p *ngIf="createAccountMessage != null" style="text-align: center; margin-top: 14px"><small>{{createAccountMessage.message}}</small></p>
+    <form [formGroup]="createAccountForm" style="width: fit-content; display: flex; flex-direction: column; margin: 0 auto; margin-top: 2rem">
+      <div style="display: flex; justify-content: space-between">
+        <label for="login">Login:</label>
+        <input type="text" name="login" id="login" style="margin-left: 1rem" formControlName="login" />
+      </div>
+      <br>
+      <div style="display: flex; justify-content: space-between">
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email" style="margin-left: 1rem" formControlName="email" />
+      </div>
+      <br>
+      <div style="display: flex; justify-content: space-between">
+        <label for="password">Senha:</label>
+        <input type="text" type="password" name="password" id="password" style="margin-left: 1rem" formControlName="password"/>
+      </div>
+      <br>
+      <div style="display: flex; justify-content: space-between">
+        <label for="password">Repetir Senha:</label>
+        <input type="text" type="password" name="password" id="repeat-password" style="margin-left: 1rem" formControlName="repeatPassword"/>
+      </div>
+      <br>
+      <input type="button" value="Cadastrar se" (click)="createAccount()" /><br>
+      <div style="text-align: right">
+        <a href="#">Esqueci minha senha</a>
+        <br>
+        <a href="#">Trocar senha</a>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="downloads">
+  <div class="wrapper">
+    <h1 class="section-title wow fadeInUp">Downloads</h1>
+    <p class="section-paragraph wow fadeInDown" data-wow-delay="0.15s">
+      Faça download do nosso Patch para versão Interlude ou baixe o Cliente + Patch completo.
+    </p>
+    <table style="margin: 0 auto; margin-top: 25px;">
+      <tbody>
+      <tr>
+        <td style="padding-right: 20px">PATCH</td>
+        <td style="padding-right: 20px"><a href="https://mega.nz/file/AvAlVZJJ#ZrbJgCtchS1Gz6S4ZjTqLUlPKovOJb762w_ZlP1341Y" target="_blank">MEGAUPLOAD</a></td>
+        <td><a href="https://drive.google.com/file/d/16K26jApAyrxCghgj7sczw_zofyQpvSdX/view?usp=sharing" target="_blank">GOOGLE DRIVE</a></td>
+      </tr>
+      <tr>
+        <td style="padding-right: 20px">CLIENT FULL + PATCH</td>
+        <td><a href="https://mega.nz/file/pyISmLhK#RMAoMH_PybtJAYekzQV-C6ltMKyNh4Sr5yuV5utPfqE" target="_blank">MEGAUPLOAD</a></td>
+        <td><a href="https://drive.google.com/file/d/1bjwi530onA953XrKrCmpv7Asd06JxutV/view?usp=sharing" target="_blank">GOOGLE DRIVE</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 <section id="slider-bosses" class="bosses">
   <div class="wrapper">
     <div class="slider" rel="1">
@@ -288,70 +294,14 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
               <tr>
                 <th>Posição</th>
                 <th>Nome</th>
-                <th>Classe</th>
                 <th>PvP's</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
+              <tr *ngFor="let item of pvps; let i = index">
+                <td>{{i+1}}º</td>
+                <td>{{item.char_name}}</td>
+                <td>{{item.pvpkills}}</td>
               </tr>
               </tbody>
             </table>
@@ -366,102 +316,15 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
               <tr>
                 <th>Posição</th>
                 <th>Nome</th>
-                <th>Classe</th>
                 <th>PK's</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
+              <tr *ngFor="let item of pks; let i = index">
+                <td>{{i+1}}º</td>
+                <td>{{item.char_name}}</td>
+                <td>{{item.pkkills}}</td>
               </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-
               </tbody>
             </table>
           </div>
@@ -479,80 +342,10 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>500</td>
+              <tr *ngFor="let item of clans; let i = index">
+                <td>{{i+1}}º</td>
+                <td>{{item.clan_name}}</td>
+                <td>{{item.reputation_score}}</td>
               </tr>
               </tbody>
             </table>
@@ -572,97 +365,12 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
+              <tr *ngFor="let item of olympiads; let i = index">
+                <td>{{i+1}}º</td>
+                <td>{{item.char_name}}</td>
+                <td>{{item.class_name}}</td>
+                <td>{{item.olympiads_points}}</td>
               </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>1º</td>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-                <td>500</td>
-              </tr>
-
               </tbody>
             </table>
           </div>
@@ -679,54 +387,9 @@ Nosso objetivo é trazer um servidor que dure muitos anos para a comunidade, poi
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
-              </tr><tr>
-                <td>Loki</td>
-                <td>Templar Knight</td>
+              <tr *ngFor="let item of olympiads">
+                <td>{{item.char_name}}</td>
+                <td>{{item.class_name}}</td>
               </tr>
               </tbody>
             </table>
