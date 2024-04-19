@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost/l2raklion/public/api'
+  api: 'http://l2raklion.sytes.net/l2raklion-api/public/api'
 };
 
 /*

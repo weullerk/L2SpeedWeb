@@ -55,6 +55,9 @@ export class HomePageComponent implements OnInit {
 
     request.subscribe((response: OperationResponse) => {
       this.createAccountMessage = response;
+      if (response.status == 'success') {
+        this.createAccountForm.reset();
+      }
     }, (err) => {
       if (err.error) {
         this.createAccountMessage = err.error;
