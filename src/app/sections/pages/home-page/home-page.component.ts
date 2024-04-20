@@ -9,6 +9,8 @@ import {Castle} from "../../../models/Castle";
 import {Hero} from "../../../models/Hero";
 import {Olympiad} from "../../../models/Olympiad";
 import {Clan} from "../../../models/Clan";
+import {ActivatedRoute, UrlSegment} from "@angular/router";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-home-page',
@@ -33,10 +35,29 @@ export class HomePageComponent implements OnInit {
   heroes: Hero[] | null = null;
   castles: Castle[] | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+
+  accountScreen:string = '';
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const allowedScreens = [
+        'change_password',
+        'update_password',
+        'recover_password',
+        'new_password',
+      ];
+      if ('account' in params) {
+        if (allowedScreens.includes(params['account'])) {
+          this.accountScreen = params['account'];
+        } else {
+          this.accountScreen = '';
+        }
+      }
+    });
+
     this.rankings();
+    this.serverStatus();
   }
 
   createAccount() {
@@ -86,9 +107,19 @@ export class HomePageComponent implements OnInit {
     hero.subscribe((response: Hero[]) => {
       this.heroes = response;
     });
-    let castle = this.http.get<Castle[]>(environment.api + '/rankings/castles');
+    let castle = this.http.get<Castle[]>(environment.api + '/castles');
     castle.subscribe((response: Castle[]) => {
       this.castles = response;
+    });
+  }
+
+  serverStatus() {
+    let castle = this.http.get<string>(environment.api + '/server/users-online');
+    castle.subscribe((response: string) => {
+      const onlineCount: HTMLElement | null = document.getElementById('online_count');
+      if (onlineCount) {
+        onlineCount.innerText = response;
+      }
     });
   }
 
