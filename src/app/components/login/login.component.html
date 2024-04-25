@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Fazer login</h2>
+<mat-dialog-content class="mat-typography">
+  <p *ngIf="loginMessage != ''" style="text-align: center;"><small>{{loginMessage}}</small></p>
+  <form action="#" [formGroup]="loginForm" class="login">
+    <div style="display: flex; justify-content: start">
+      <label for="login">Login:&nbsp;</label>
+      <input type="text" name="login" id="login" style="margin-left: 1rem" formControlName="login" />
+    </div>
+    <br>
+    <div style="display: flex; justify-content: start">
+      <label for="password">Senha:</label>
+      <input type="text" type="password" name="password" id="password" style="margin-left: 1rem" formControlName="password"/>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: start">
+      <label style="color: white;">Senha:</label>
+      <input type="button" value="Autenticar" style="margin-left: 1rem" (click)="login()" />
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

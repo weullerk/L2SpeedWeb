@@ -4458,19 +4458,29 @@ section.account {
   padding-bottom: 7rem;
 }
 
-section.account input {
+
+section.vote-system {
+  background: url(../img/bg_lindivior.jpg) top -100px center no-repeat;
+  background-size: 100%;
+  padding-top: 5rem;
+  padding-bottom: 7rem;
+  objetct-fit: fill;
+}
+
+section.account input, section.vote-system input, form.login input {
   padding: 8px 8px;
 }
 
-section.account label {
+section.account label, section.vote-system label, form.login label {
   padding: 12px 16px 8px 16px;
 }
 
 section.downloads {
-  background: url(../img/bg_section7.jpg) top -100px center no-repeat;
+  background: url(../img/bg_downloads.jpg) top -120px center no-repeat;
   background-size: 100%;
   padding-top: 5rem;
   padding-bottom: 7rem;
+  object-fit: fill;
 }
 
 @media not all and (pointer: coarse) {

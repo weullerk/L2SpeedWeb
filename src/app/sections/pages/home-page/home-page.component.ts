@@ -11,6 +11,10 @@ import {Olympiad} from "../../../models/Olympiad";
 import {Clan} from "../../../models/Clan";
 import {ActivatedRoute, UrlSegment} from "@angular/router";
 import {map, Observable} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "../../../components/login/login.component";
+import {AuthenticationSuccess} from "../../../models/AuthenticationSuccess";
+import {AuthenticationData} from "../../../models/AuthenticationData";
 
 @Component({
   selector: 'app-home-page',
@@ -35,9 +39,13 @@ export class HomePageComponent implements OnInit {
   heroes: Hero[] | null = null;
   castles: Castle[] | null = null;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute,
+              public dialog: MatDialog) { }
 
   accountScreen:string = '';
+
+  authData: AuthenticationSuccess | null = null;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -123,4 +131,10 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginComponent);
+    dialogRef.componentInstance.newLogin.subscribe((authData: AuthenticationSuccess) => {
+      this.authData = authData;
+    });
+  }
 }
