@@ -15,6 +15,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../../../components/login/login.component";
 import {AuthenticationSuccess} from "../../../models/AuthenticationSuccess";
 import {AuthenticationData} from "../../../models/AuthenticationData";
+import {CheckToken} from "../../../models/CheckToken";
 
 @Component({
   selector: 'app-home-page',
@@ -45,7 +46,7 @@ export class HomePageComponent implements OnInit {
 
   accountScreen:string = '';
 
-  authData: AuthenticationSuccess | null = null;
+  authToken: string | null = null;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -63,6 +64,16 @@ export class HomePageComponent implements OnInit {
         }
       }
     });
+
+    const accessToken: string | null = localStorage.getItem('access_token');
+    if (accessToken) {
+      this.checkAccessToken(accessToken).subscribe((success) => {
+        this.authToken = accessToken;
+      }, error => {
+        this.authToken = null;
+        localStorage.removeItem('access_token');
+      });
+    }
 
     this.rankings();
     this.serverStatus();
@@ -134,7 +145,18 @@ export class HomePageComponent implements OnInit {
   openLoginDialog() {
     const dialogRef = this.dialog.open(LoginComponent);
     dialogRef.componentInstance.newLogin.subscribe((authData: AuthenticationSuccess) => {
-      this.authData = authData;
+      this.authToken = authData.access_token;
+      localStorage.setItem('access_token', authData.access_token);
+
+      dialogRef.close();
     });
+  }
+
+  checkAccessToken(token: string) {
+    let headers = {
+      'Authorization': 'Bearer ' + token
+    };
+
+    return this.http.post<CheckToken>(environment.api + '/check-access', {}, {headers: new HttpHeaders(headers)});
   }
 }

@@ -268,12 +268,12 @@ Servidor com vários eventos <br />
       Vote para ajudar a divulgar o servidor e receber recompensas.
     </p><br />
 
-    <div *ngIf="!authData" style="display:flex !important; flex-flow: column; justify-content: center; align-items: center; width: 100%">
+    <div *ngIf="!authToken" style="display:flex !important; flex-flow: column; justify-content: center; align-items: center; width: 100%">
       <div>É necessário fazer a autenticação para fazer o voto e receber as recompesas. <br><br><br></div>
      <mat-icon (click)="openLoginDialog()" style="font-size: 4em !important; width: 4rem; height: 4rem; cursor: pointer" aria-hidden="false" aria-label="Login Icon" fontIcon="lock_open_right"></mat-icon>
     </div>
 
-    <div *ngIf="authData">
+    <div *ngIf="authToken">
       <p>As recompensas serão entregues na warehouse do personagem que você escolher:</p> <br>
       <form action="#" name="reward">
         <div style="display: flex; justify-content: flex-start">

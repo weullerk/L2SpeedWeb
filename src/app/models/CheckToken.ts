@@ -1,4 +1,3 @@
-export interface OperationResponse{
-  status: string,
-  message:  string
+export interface CheckToken {
+  valid: boolean
 }
